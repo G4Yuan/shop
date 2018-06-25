@@ -18,19 +18,18 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		
+		<!-- Spring Boot Mybatis -->
+    	<mybatis.version>1.3.2</mybatis.version>
 		<!-- sms service -->
 		<aliyun.sdk.version>4.0.2</aliyun.sdk.version>
 		<aliyun.dysms.version>1.1.0</aliyun.dysms.version>
+		<!-- MYSQL Setting -->
+    	<mysql.connector.version>6.0.6</mysql.connector.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>shop-common</groupId>
 			<artifactId>shop-common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>shop-model</groupId>
-			<artifactId>shop-model</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
@@ -56,7 +55,11 @@
 	        <groupId>org.springframework.boot</groupId>
 	        <artifactId>spring-boot-starter-jdbc</artifactId>
 	    </dependency>
-	    
+	    <dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
 	    <!-- sms service -->
 		<dependency>
 		  <groupId>com.aliyun</groupId>
@@ -68,5 +71,10 @@
 		    <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
 		    <version>${aliyun.dysms.version}</version>
 		</dependency>
+		 <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.connector.version}</version>
+        </dependency>
 	</dependencies>
 </project>

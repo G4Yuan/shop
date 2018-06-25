@@ -5,16 +5,16 @@ spring:
     config:
       server:
         git:
-          uri: https://gitee.com/YwOS/shop
+          uri: https://github.com/G4Yuan/shop
           searchPaths:  shop-config
-      username: yuanwei@ycode.cn
-      password: yuanwei330219520
+#      username: yuanwei@ycode.cn
+#      password: yuanwei330219520
   boot:
     admin:
       client:
         url: http://localhost:12801
 server:
-  port: 12800
+  port: 8888
 
 eureka:
   client:

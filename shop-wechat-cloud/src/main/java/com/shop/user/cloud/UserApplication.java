@@ -16,7 +16,7 @@ import com.shop.common.swagger.EnableMySwagger;
 @EnableEurekaClient
 @RefreshScope
 @SpringBootApplication
-@MapperScan({"com.shop.user.cloud.dao.*"})
+@MapperScan("com.shop.user.cloud.dao")
 public class UserApplication {
 
 	public static void main(String[] args) {
