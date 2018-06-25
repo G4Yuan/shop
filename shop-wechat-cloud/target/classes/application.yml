@@ -1,0 +1,22 @@
+#读取配置中心相关配置
+spring:
+  application:
+    name: shop
+  cloud: 
+    config:
+      label:  master
+      profile: user-cloud
+      discovery:
+        enabled:  true
+        serviceId:  shop-server-config
+#      uri: http://localhost:12800/
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone:  http://localhost:8761/eureka/
+      
+#server: 
+#  port: 8881
+
+debug: true

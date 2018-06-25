@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shop.model.dao.wechat.ShopAdvertDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.shop.model.entity.wechat.ShopAdvert" id="shopAdvertMap">
+        <result property="id" column="id"/>
+        <result property="positionId" column="position_id"/>
+        <result property="mediaType" column="media_type"/>
+        <result property="title" column="title"/>
+        <result property="link" column="link"/>
+        <result property="imageUrl" column="image_url"/>
+        <result property="content" column="content"/>
+        <result property="createTime" column="create_time"/>
+        <result property="isShow" column="is_show"/>
+    </resultMap>
+
+	<select id="queryObject" resultType="com.shop.model.entity.wechat.ShopAdvert">
+		select * from shop_advert where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="com.shop.model.entity.wechat.ShopAdvert">
+		select * from shop_advert
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from shop_advert 
+	</select>
+	 
+	<insert id="save" parameterType="com.shop.model.entity.wechat.ShopAdvert" useGeneratedKeys="true" keyProperty="id">
+		insert into shop_advert
+		(
+			`position_id`, 
+			`media_type`, 
+			`title`, 
+			`link`, 
+			`image_url`, 
+			`content`, 
+			`create_time`, 
+			`is_show`
+		)
+		values
+		(
+			#{positionId}, 
+			#{mediaType}, 
+			#{title}, 
+			#{link}, 
+			#{imageUrl}, 
+			#{content}, 
+			#{createTime}, 
+			#{isShow}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.shop.model.entity.wechat.ShopAdvert">
+		update shop_advert 
+		<set>
+			<if test="positionId != null">`position_id` = #{positionId}, </if>
+			<if test="mediaType != null">`media_type` = #{mediaType}, </if>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="link != null">`link` = #{link}, </if>
+			<if test="imageUrl != null">`image_url` = #{imageUrl}, </if>
+			<if test="content != null">`content` = #{content}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="isShow != null">`is_show` = #{isShow}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from shop_advert where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from shop_advert where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>
